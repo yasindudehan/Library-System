@@ -7,12 +7,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class APIException extends Exception {
 
     private String code;
     private String message;
     private int statusCode;
+    public APIException(String message, String code, int statusCode) {
+        super(message);
+        this.code = code;
+        this.message = message;
+        this.statusCode = statusCode;
+    }
 
 }
