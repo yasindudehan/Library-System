@@ -12,6 +12,7 @@ import com.testassessment.librarysystem.utils.messages.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,12 @@ public class MemberServiceImp implements MemberService {
     @Override
     public Response<UserRegistrationResponse> userRegistration(UserRegistration userRegistration) throws APIException {
         try{
+            /**
+             * assume email is unique and name can be duplicated as well.
+             * step 1:firstly we check the email is already registered or not
+             * step 2:if email is already registered then throw a Custom Exception
+             * step 3:else we save the book object and return the response.
+             * */
             Optional<Member> existingMember = memberRepository.findByEmail(userRegistration.getEmail());
             if(existingMember.isPresent()){
                 throw new APIException(ResponseCode.EMAIL_IS_ALREADY_REGISTERED,ResponseCode.LSU_400,400);
@@ -29,6 +36,7 @@ public class MemberServiceImp implements MemberService {
                 Member member = new Member();
                 member.setName(userRegistration.getName());
                 member.setEmail(userRegistration.getEmail());
+                member.setCreatedAt(new Timestamp(System.currentTimeMillis()));
                 member = memberRepository.save(member);
                 UserRegistrationResponse response = new UserRegistrationResponse();
                 response.setId(member.getId());

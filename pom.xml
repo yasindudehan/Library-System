@@ -70,39 +70,30 @@
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>5.0.0</version>
+			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.9.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>6.2.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.2.0</version> <!-- Works reliably with Spring Boot 3.x -->
+		</dependency>
+
+
+
 	</dependencies>
-
-<!--	<build>-->
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-compiler-plugin</artifactId>-->
-<!--&lt;!&ndash;				<configuration>&ndash;&gt;-->
-<!--&lt;!&ndash;					<annotationProcessorPaths>&ndash;&gt;-->
-<!--&lt;!&ndash;						<path>&ndash;&gt;-->
-<!--&lt;!&ndash;							<groupId>org.projectlombok</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;							<artifactId>lombok</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;						</path>&ndash;&gt;-->
-<!--&lt;!&ndash;					</annotationProcessorPaths>&ndash;&gt;-->
-<!--&lt;!&ndash;				</configuration>&ndash;&gt;-->
-<!--			</plugin>-->
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--&lt;!&ndash;				<configuration>&ndash;&gt;-->
-<!--&lt;!&ndash;					<excludes>&ndash;&gt;-->
-<!--&lt;!&ndash;						<exclude>&ndash;&gt;-->
-<!--&lt;!&ndash;							<groupId>org.projectlombok</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;							<artifactId>lombok</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;						</exclude>&ndash;&gt;-->
-<!--&lt;!&ndash;					</excludes>&ndash;&gt;-->
-<!--&lt;!&ndash;				</configuration>&ndash;&gt;-->
-<!--			</plugin>-->
-<!--		</plugins>-->
-<!--	</build>-->
-
 </project>

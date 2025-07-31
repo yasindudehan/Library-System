@@ -3,18 +3,20 @@ package com.testassessment.librarysystem.utils.exceptions;
 
 import com.testassessment.librarysystem.utils.messages.ErrorResponse;
 import com.testassessment.librarysystem.utils.messages.ResponseCode;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
-
-@ControllerAdvice
+@Hidden
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
 

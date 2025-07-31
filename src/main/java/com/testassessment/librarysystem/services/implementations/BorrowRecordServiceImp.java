@@ -14,6 +14,7 @@ import com.testassessment.librarysystem.repositories.borrowrecord.BorrowRecordsR
 import com.testassessment.librarysystem.services.interfaces.BorrowRecordService;
 import com.testassessment.librarysystem.utils.exceptions.APIException;
 import com.testassessment.librarysystem.utils.messages.ResponseCode;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +31,20 @@ public class BorrowRecordServiceImp implements BorrowRecordService {
     @Autowired
     private BorrowRecordsRepository borrowRecordsRepository;
 
+
+    @Transactional
     @Override
     public Response<BorrowedBookResponse> borrowBook(int bookId, int borrowerId) throws APIException {
         try{
+            /**
+             * step1 - we use bookId and member id to borrow the book
+             * step2 - firstly we check  the book is available or not
+             * and  the user is registered or not
+             * step3 - if book and member are present , then we check the book is already borrowed or not
+             * step4 - if book is already borrowed then throw a Custom Exception
+             * step5 - else borrow the book and save the borrow record and update the book isborrowed to true
+             * step6 - else book or member is not present then throw a Custom Exception
+             * */
             Optional<Book> book = bookRepository.findById(bookId);
             Optional<Member> member = memberRepository.findById(borrowerId);
             if(book.isPresent() && member.isPresent()){
@@ -64,6 +76,13 @@ public class BorrowRecordServiceImp implements BorrowRecordService {
     @Override
     public Response<BorrowedBookResponse> returnBook(int id) throws APIException {
         try{
+            /**
+             * setp1 - we use borrowRecord table id to return the book
+             * step2 - firstly we check  the record is present or not
+             * step3 - if the record is present , then we check if the book is already returned or not
+             * step4 - if book is already returned then throw a Custom Exception
+             * step5 - else  update the book isborrowed to false and update the return date then return borrowed details.
+             * */
             Optional<BorrowRecords> borrowRecord = borrowRecordsRepository.findById(id);
             if(borrowRecord.isPresent()){
                 if(borrowRecord.get().getBook().isIsborrowed()){
