@@ -10,8 +10,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
-            }
+                           git branch: 'master', url: 'https://github.com/yasindudehan/Library-System.git'
+                       }
         }
 
         stage('Build Docker Image') {
